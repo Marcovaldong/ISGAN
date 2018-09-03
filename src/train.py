@@ -244,17 +244,17 @@ def train(epoch):
             ax1.plot(avg_loss, 'r')
             fig1.savefig(save_dir + 'loss.jpg')
 
-            # train discriminator
-            if idx % 5 == 0:
-                cls_cover = discriminator(target)
-                stego = stego_pool.query(stego)
-                cls_stego = discriminator(stego)
-                discover = BCE_loss(cls_cover, Variable(torch.ones(cls_cover.size()).cuda() * random.uniform(0.8, 1.2)))
-                disstego = BCE_loss(cls_stego, Variable(torch.zeros(cls_stego.size()).cuda() * random.uniform(0., 0.2)))
-                disloss = discover + disstego
-                discriminator.zero_grad()
-                disloss.backward()
-                discriminator_optimizer.step()
+        # train discriminator
+        if idx % 5 == 0:
+            cls_cover = discriminator(target)
+            stego = stego_pool.query(stego)
+            cls_stego = discriminator(stego)
+            discover = BCE_loss(cls_cover, Variable(torch.ones(cls_cover.size()).cuda() * random.uniform(0.8, 1.2)))
+            disstego = BCE_loss(cls_stego, Variable(torch.zeros(cls_stego.size()).cuda() * random.uniform(0., 0.2)))
+            disloss = discover + disstego
+            discriminator.zero_grad()
+            disloss.backward()
+            discriminator_optimizer.step()
 
 
     show3(epoch)
