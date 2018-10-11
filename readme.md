@@ -1,4 +1,4 @@
-# Invisible Steganography via Generative Adversarial Network
+# Invisible Steganography via Generative Adversarial Networks
 
 <img src="figs/overall-architecture.png" width="800" height="300" />
 
